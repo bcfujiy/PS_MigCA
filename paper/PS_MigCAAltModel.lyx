@@ -370,7 +370,7 @@ Consider there are
 
  is the lowest.
  Also assume 
-\begin_inset Formula $\sigma<\epsilon_{k},\quad\forall k$
+\begin_inset Formula $\sigma<\epsilon_{k},\forall k$
 \end_inset
 
 .
@@ -409,11 +409,26 @@ All farmers with productivity above
 \begin_inset Formula $\phi^{*}$
 \end_inset
 
- produce crop 
+ for sure produce crop 
 \begin_inset Formula $k=1$
 \end_inset
 
 .
+ Something I'm not sure here is if all farmers with productivity above 
+\begin_inset Formula $\phi^{*}$
+\end_inset
+
+ only produce crop 
+\begin_inset Formula $k=1$
+\end_inset
+
+ or other crops too, since we could do the same analysis with respect to
+ 
+\begin_inset Formula $k=3$
+\end_inset
+
+ and so on.
+ Let's maintain the analysis between these two crops.
  Notice that under our parametrization, 
 \begin_inset Formula $\frac{{d\phi^{*}}}{d\phi_{k}}>0$
 \end_inset
