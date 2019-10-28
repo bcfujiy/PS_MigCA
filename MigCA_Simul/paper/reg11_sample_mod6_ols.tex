@@ -1,0 +1,16 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{5}{c}}
+\hline\hline
+                &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         &\multicolumn{1}{c}{(5)}         \\
+\hline
+sample\_L\_iktlag\_log& -0.00630         &   0.0241\sym{*}  &   0.0163\sym{*}  &   0.0230\sym{***}&   0.0363\sym{***}\\
+                & (0.0143)         &(0.00969)         &(0.00765)         &(0.00664)         &(0.00614)         \\
+\hline
+Observations    &     4862         &    10893         &    21721         &    31041         &    41810         \\
+R-sq            &    0.653         &    0.553         &    0.458         &    0.399         &    0.351         \\
+\hline\hline
+\multicolumn{6}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{6}{l}{\footnotesize \sym{*} \(p<0.05\), \sym{**} \(p<0.01\), \sym{***} \(p<0.001\)}\\
+\end{tabular}
+}
