@@ -2,4 +2,7 @@ MigCA_Simul/example/
 MigCA_Simul/outputs/
 MigCA_Simul/example/
 
-MigCA_RegsOtherCountries/input/
+MigCA_RegsOtherCountries/data/input/
+MigCA_RegsOtherCountries/data/output/
+MigCA_RegsOtherCountries/analysis/temp/
+MigCA_RegsOtherCountries/analysis/output/
