@@ -36,11 +36,11 @@ drop baba
 
 * save
 sort geo1_th
-save ".././output/locations", replace
+save ".././temp/locations", replace
 
 *** LIST OF LOCATIONS 1
 * open
-use ".././output/locations", clear
+use ".././temp/locations", clear
 
 * repeat
 expand 68
@@ -50,16 +50,16 @@ rename geo1_th origin
 * save
 gen glue = _n
 sort glue
-save ".././output/locations1", replace
+save ".././temp/locations1", replace
 
 *** LIST OF LOCATIONS 2
 * open
-use ".././output/locations", clear
+use ".././temp/locations", clear
 
 * repeat
 forval i = 1(1)67 {
 
-	append using ".././output/locations"
+	append using ".././temp/locations"
 
 }
 
@@ -69,29 +69,29 @@ rename geo1_th destination
 * save
 gen glue = _n
 sort glue
-save ".././output/locations2", replace
+save ".././temp/locations2", replace
 
 *** MERGE
 * open
-use ".././output/locations1", clear
+use ".././temp/locations1", clear
 
 * merge
-merge glue using ".././output/locations2"
+merge glue using ".././temp/locations2"
 drop _merge glue
 
 * creating crops
 expand 13
 sort origin destination
-bys origin destination: gen crop = _n
+bys origin destination: gen crop = _n - 1
 
 * save
 sort origin destination crop
-save ".././output/origin_dest_crop", replace
+save ".././temp/origin_dest_crop", replace
 
 ********************************************************************************
 *** Thailand, 1970
 ********************************************************************************
-
+/*
 * open
 use "../../data/output/Thailand", clear
 
@@ -134,3 +134,116 @@ collapse (mean) L_ijkt L_iktlag, by(origin destination crop)
 sort origin destination crop
 merge origin destination crop using ".././output/origin_dest_crop"
 sort origin destination crop
+*/
+********************************************************************************
+*** L_iktlag
+********************************************************************************
+
+* open
+use "../../data/output/Thailand", clear
+
+* 1970
+keep if year == 1970
+
+* keep HH head
+keep if relate == 1
+
+* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
+* 4 (coconut), 5 (tabacco + cotton + tea + coffee + hemp), 6 (vegetables?), 
+* 7 (fruits), 8 (other agric.), 9 (poultry + other animals), 10 (wood), 
+* 11 (fish), 12 (hunting)
+keep if ind >= 0 & ind <= 12
+
+* RHS variable
+gen L_iktlag = 1
+
+* renames
+rename geo1_th origin
+rename ind crop
+
+* collapse
+collapse (sum) L_iktlag, by(origin crop)
+
+* save
+sort origin crop
+save ".././temp/L_iktlag", replace
+
+********************************************************************************
+*** L_ijkt
+********************************************************************************
+
+* open
+use "../../data/output/Thailand", clear
+
+* 1980
+keep if year == 1980
+
+* keep HH head
+keep if relate == 1
+
+* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
+* 4 (coconut), 5 (tabacco + cotton + tea + coffee + hemp), 6 (vegetables?), 
+* 7 (fruits), 8 (other agric.), 9 (poultry + other animals), 10 (wood), 
+* 11 (fish), 12 (hunting)
+keep if ind >= 0 & ind <= 12
+
+* drop unknown previous location
+drop if geomig1_p == 764999 | geomig1_p == 764098 | geomig1_p == 764997 ///
+| geomig1_p == 764998
+
+* attaching previous location
+replace geomig1_p = geo1_th if geomig1_p == 764097
+
+* renames
+rename geomig1_p origin
+rename geo1_th destination
+rename ind crop
+
+* Migration flows
+gen L_ijkt = 1
+
+* collapse
+collapse (sum) L_ijkt, by(origin destination crop)
+
+* save
+sort origin destination crop
+save ".././temp/L_ijkt", replace
+
+********************************************************************************
+*** Forming database
+********************************************************************************
+
+* open
+use ".././temp/origin_dest_crop", clear
+
+* merge with L_iktlag
+sort origin crop
+merge origin crop using ".././temp/L_iktlag"
+drop _merge
+
+* merge with L_ijkt
+sort origin destination crop
+merge origin destination crop using ".././temp/L_ijkt"
+sort origin destination crop
+drop _merge
+
+* migration flows that are zero
+replace L_ijkt = 0 if L_ijkt == .
+
+* variables in logs
+gen L_ijkt_log = log(L_ijkt)
+gen L_iktlag_log = log(L_iktlag)
+
+* fixed effects
+egen iota_jkt = group(destination crop)
+egen iota_ijt = group(origin destination)
+
+********************************************************************************
+*** Regressions
+********************************************************************************
+
+* Regression (11), OLS
+reghdfe L_ijkt_log L_iktlag_log, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
+
+* Regression (11), PPML
+ppmlhdfe L_ijkt L_iktlag_log, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
