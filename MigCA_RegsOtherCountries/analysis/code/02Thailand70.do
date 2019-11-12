@@ -62,7 +62,7 @@ use "../../data/output/Thailand", clear
 keep if year == 1970
 
 * keep HH head
-*keep if relate == 1
+keep if relate == 1
 
 * keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
 * 4 (coconut), 9 (poultry + other animals), 10 (wood), 
