@@ -1,2 +1,5 @@
 # RA_PS_MigCAAltModel
-Working on a alternative model for Pellegrina + Sotelo with sorting and selection
+Folders:
+- MigCA_AltModel: model with sorting/selection and aglommeration forces
+- MigCA_RegsOtherCountries: replicating empirical findings with other countries
+- MigCA_Simul: Work over the summer doing simulations
