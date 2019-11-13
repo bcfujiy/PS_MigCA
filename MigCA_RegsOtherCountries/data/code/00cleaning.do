@@ -19,6 +19,7 @@ if "`c(username)'" == "Petrichor" {
 ********************************************************************************
 *** Thailand, 1970
 ********************************************************************************
+
 * NOTE: You need to set the Stata working directory to the path
 * where the data file is located.
 
@@ -31,27 +32,31 @@ quietly infix                   ///
   double  sample       8-16     ///
   double  serial       17-28    ///
   double  hhwt         29-36    ///
-  long    geo1_th      37-42    ///
-  int     geo1_th1970  43-45    ///
-  long    geo2_th1970  46-51    ///
-  byte    regnth       52-52    ///
-  int     pernum       53-56    ///
-  double  perwt        57-64    ///
-  byte    relate       65-65    ///
-  int     related      66-69    ///
-  int     age          70-72    ///
-  byte    nativity     73-73    ///
-  long    bplcountry   74-78    ///
-  byte    bplth        79-80    ///
-  int     occ          81-84    ///
-  long    ind          85-89    ///
-  byte    classwk      90-90    ///
-  int     classwkd     91-93    ///
-  byte    migratep     94-95    ///
-  long    migctryp     96-100   ///
-  long    geomig1_p    101-106  ///
-  byte    migyrs1      107-108  ///
-  using `".././input/Thailand/ipumsi_00005.dat"'
+  long    geolev1      37-42    ///
+  long    geo1_th      43-48    ///
+  int     geo1_th1970  49-51    ///
+  int     geo1_th1980  52-54    ///
+  long    geo2_th1970  55-60    ///
+  byte    regnth       61-61    ///
+  int     pernum       62-65    ///
+  double  perwt        66-73    ///
+  byte    relate       74-74    ///
+  int     related      75-78    ///
+  int     age          79-81    ///
+  byte    sex          82-82    ///
+  byte    nativity     83-83    ///
+  long    bplcountry   84-88    ///
+  byte    bplth        89-90    ///
+  int     occ          91-94    ///
+  long    ind          95-99    ///
+  byte    classwk      100-100  ///
+  int     classwkd     101-103  ///
+  byte    migratep     104-105  ///
+  long    migctryp     106-110  ///
+  long    geomig1_p    111-116  ///
+  byte    migyrs1      117-118  ///
+  long    mig1_p_th    119-124  ///
+  using `".././input/Thailand/ipumsi_00006.dat"'
 
 replace hhwt        = hhwt        / 100
 replace perwt       = perwt       / 100
@@ -66,8 +71,10 @@ label var year        `"Year"'
 label var sample      `"IPUMS sample identifier"'
 label var serial      `"Household serial number"'
 label var hhwt        `"Household weight"'
+label var geolev1     `"1st subnational geographic level, world [consistent boundaries over time]"'
 label var geo1_th     `"Thailand, Province 1970 - 2000 [Level 1; consistent boundaries, GIS]"'
 label var geo1_th1970 `"Thailand, Province 1970 [Level 1, GIS]"'
+label var geo1_th1980 `"Thailand, Province 1980 [Level 1, GIS]"'
 label var geo2_th1970 `"Thailand, District 1970 [Level 2, GIS]"'
 label var regnth      `"Thailand, Region"'
 label var pernum      `"Person number"'
@@ -75,6 +82,7 @@ label var perwt       `"Person weight"'
 label var relate      `"Relationship to household head [general version]"'
 label var related     `"Relationship to household head [detailed version]"'
 label var age         `"Age"'
+label var sex         `"Sex"'
 label var nativity    `"Nativity status"'
 label var bplcountry  `"Country of birth"'
 label var bplth       `"Province of birth, Thailand"'
@@ -86,6 +94,7 @@ label var migratep    `"Migration status, previous residence"'
 label var migctryp    `"Country of previous residence"'
 label var geomig1_p   `"1st subnational geographic level of previous residence, world [consistent bounda"'
 label var migyrs1     `"Years residing in current locality"'
+label var mig1_p_th   `"Province of previous residence, Thailand; consistent boundaries, GIS"'
 
 label define country_lbl 032 `"Argentina"'
 label define country_lbl 051 `"Armenia"', add
@@ -862,6 +871,81 @@ label define geo1_th1970_lbl 071 `"Ubon Ratchathani"', add
 label define geo1_th1970_lbl 088 `"Waterbody"', add
 label values geo1_th1970 geo1_th1970_lbl
 
+label define geo1_th1980_lbl 001 `"Krabi"'
+label define geo1_th1980_lbl 002 `"Kanchanaburi"', add
+label define geo1_th1980_lbl 003 `"Kalasin"', add
+label define geo1_th1980_lbl 004 `"Kamphaeng Phet"', add
+label define geo1_th1980_lbl 005 `"Khon Kaen"', add
+label define geo1_th1980_lbl 006 `"Chantha Buri"', add
+label define geo1_th1980_lbl 007 `"Chchoengsao"', add
+label define geo1_th1980_lbl 008 `"Chon Buri"', add
+label define geo1_th1980_lbl 009 `"Chainat"', add
+label define geo1_th1980_lbl 010 `"Chaiyaphum"', add
+label define geo1_th1980_lbl 011 `"Chumphon"', add
+label define geo1_th1980_lbl 012 `"Chiang Rai"', add
+label define geo1_th1980_lbl 013 `"Chiang Mai"', add
+label define geo1_th1980_lbl 014 `"Trang"', add
+label define geo1_th1980_lbl 015 `"Trat"', add
+label define geo1_th1980_lbl 016 `"Tak"', add
+label define geo1_th1980_lbl 017 `"Nakhon Nayok"', add
+label define geo1_th1980_lbl 018 `"Nakhon Pathom"', add
+label define geo1_th1980_lbl 019 `"Nakhon Phanom"', add
+label define geo1_th1980_lbl 020 `"Nakhon Ratchasim"', add
+label define geo1_th1980_lbl 021 `"Nakhon Thammarat"', add
+label define geo1_th1980_lbl 022 `"Nakhon Sawan"', add
+label define geo1_th1980_lbl 023 `"Nonthaburi"', add
+label define geo1_th1980_lbl 024 `"Narathiwat"', add
+label define geo1_th1980_lbl 025 `"Nan"', add
+label define geo1_th1980_lbl 026 `"Buri Ram"', add
+label define geo1_th1980_lbl 027 `"Pathum Thani"', add
+label define geo1_th1980_lbl 028 `"Khan"', add
+label define geo1_th1980_lbl 029 `"Prachin Buri"', add
+label define geo1_th1980_lbl 030 `"Pattani"', add
+label define geo1_th1980_lbl 031 `"Ayutthaya"', add
+label define geo1_th1980_lbl 032 `"Phayao"', add
+label define geo1_th1980_lbl 033 `"Phangnga"', add
+label define geo1_th1980_lbl 034 `"Phatthalung"', add
+label define geo1_th1980_lbl 035 `"Phichit"', add
+label define geo1_th1980_lbl 036 `"Phitsanulok"', add
+label define geo1_th1980_lbl 037 `"Petchaburi"', add
+label define geo1_th1980_lbl 038 `"Petchabun"', add
+label define geo1_th1980_lbl 039 `"Phrae"', add
+label define geo1_th1980_lbl 040 `"Phuket"', add
+label define geo1_th1980_lbl 041 `"Maha Sarakam"', add
+label define geo1_th1980_lbl 042 `"Mae Hong Son"', add
+label define geo1_th1980_lbl 043 `"Yasothon"', add
+label define geo1_th1980_lbl 044 `"Yala"', add
+label define geo1_th1980_lbl 045 `"Roi Et"', add
+label define geo1_th1980_lbl 046 `"Ranong"', add
+label define geo1_th1980_lbl 047 `"Rayong"', add
+label define geo1_th1980_lbl 048 `"Ratchaburi"', add
+label define geo1_th1980_lbl 049 `"Lop Buri"', add
+label define geo1_th1980_lbl 050 `"Lampang"', add
+label define geo1_th1980_lbl 051 `"Lam Phun"', add
+label define geo1_th1980_lbl 052 `"Loei"', add
+label define geo1_th1980_lbl 053 `"Si Sa Ket"', add
+label define geo1_th1980_lbl 054 `"Sakon Nakhon"', add
+label define geo1_th1980_lbl 055 `"Songkhla"', add
+label define geo1_th1980_lbl 056 `"Satun"', add
+label define geo1_th1980_lbl 057 `"Samut Prakan"', add
+label define geo1_th1980_lbl 058 `"Samut Songkhram"', add
+label define geo1_th1980_lbl 059 `"Samut Sakhon"', add
+label define geo1_th1980_lbl 060 `"Saraburi"', add
+label define geo1_th1980_lbl 061 `"Sing Buri"', add
+label define geo1_th1980_lbl 062 `"Sukhothai"', add
+label define geo1_th1980_lbl 063 `"Suphan Buri"', add
+label define geo1_th1980_lbl 064 `"Surat Thani"', add
+label define geo1_th1980_lbl 065 `"Surin"', add
+label define geo1_th1980_lbl 066 `"Nong Kai"', add
+label define geo1_th1980_lbl 067 `"Ang Thong"', add
+label define geo1_th1980_lbl 068 `"Udon Thani"', add
+label define geo1_th1980_lbl 069 `"Uttaradit"', add
+label define geo1_th1980_lbl 070 `"Uthai Thani"', add
+label define geo1_th1980_lbl 071 `"Ubon Ratchathani"', add
+label define geo1_th1980_lbl 072 `"Phra Nakorn"', add
+label define geo1_th1980_lbl 088 `"Waterbody"', add
+label values geo1_th1980 geo1_th1980_lbl
+
 label define geo2_th1970_lbl 001001 `"Krabi"'
 label define geo2_th1970_lbl 001003 `"Khao Phanom"', add
 label define geo2_th1970_lbl 001099 `"Krabi province, district unknown"', add
@@ -1526,6 +1610,11 @@ label define age_lbl 099 `"99"', add
 label define age_lbl 100 `"100+"', add
 label define age_lbl 999 `"Not reported/missing"', add
 label values age age_lbl
+
+label define sex_lbl 1 `"Male"'
+label define sex_lbl 2 `"Female"', add
+label define sex_lbl 9 `"Unknown"', add
+label values sex sex_lbl
 
 label define nativity_lbl 0 `"NIU (not universe)"'
 label define nativity_lbl 1 `"Native-born"', add
@@ -3464,6 +3553,81 @@ label define migyrs1_lbl 97 `"More than 5 years"', add
 label define migyrs1_lbl 98 `"Unknown"', add
 label define migyrs1_lbl 99 `"NIU (not in universe)"', add
 label values migyrs1 migyrs1_lbl
+
+label define mig1_p_th_lbl 764010 `"Bangkok"'
+label define mig1_p_th_lbl 764011 `"Samut Prakan"', add
+label define mig1_p_th_lbl 764012 `"Nonthaburi"', add
+label define mig1_p_th_lbl 764013 `"Pathum Thani"', add
+label define mig1_p_th_lbl 764014 `"Phra Nakhon si Ayutthaya"', add
+label define mig1_p_th_lbl 764015 `"Ang Thong"', add
+label define mig1_p_th_lbl 764016 `"Lop Buri"', add
+label define mig1_p_th_lbl 764017 `"Sing Buri"', add
+label define mig1_p_th_lbl 764018 `"Chai Nat"', add
+label define mig1_p_th_lbl 764019 `"Sa Kaeo, Prachin Buri"', add
+label define mig1_p_th_lbl 764020 `"Chon buri"', add
+label define mig1_p_th_lbl 764021 `"Rayong"', add
+label define mig1_p_th_lbl 764022 `"Chanthaburi"', add
+label define mig1_p_th_lbl 764023 `"Trat"', add
+label define mig1_p_th_lbl 764024 `"Chachoengsao"', add
+label define mig1_p_th_lbl 764026 `"Nakhon Nayok"', add
+label define mig1_p_th_lbl 764027 `"Saraburi"', add
+label define mig1_p_th_lbl 764070 `"Ratchaburi"', add
+label define mig1_p_th_lbl 764071 `"Kanchanaburi"', add
+label define mig1_p_th_lbl 764072 `"Suphanburi"', add
+label define mig1_p_th_lbl 764073 `"Nakhon Pathom"', add
+label define mig1_p_th_lbl 764074 `"Samut Sakhon"', add
+label define mig1_p_th_lbl 764075 `"Samut Songkhram"', add
+label define mig1_p_th_lbl 764076 `"Phetchaburi"', add
+label define mig1_p_th_lbl 764077 `"Prachuap Khiri Khan"', add
+label define mig1_p_th_lbl 764030 `"Nakhon Ratchasima"', add
+label define mig1_p_th_lbl 764031 `"Buri Ram"', add
+label define mig1_p_th_lbl 764032 `"Surin"', add
+label define mig1_p_th_lbl 764033 `"Si Sa Ket"', add
+label define mig1_p_th_lbl 764034 `"Ubon Ratchathani, Yasothon, Amnat Charoen"', add
+label define mig1_p_th_lbl 764036 `"Chaiyaphum"', add
+label define mig1_p_th_lbl 764039 `"Nong Bua Lam Phu, Udon Thani"', add
+label define mig1_p_th_lbl 764040 `"Khon Kaen"', add
+label define mig1_p_th_lbl 764042 `"Loei"', add
+label define mig1_p_th_lbl 764043 `"Nong Khai"', add
+label define mig1_p_th_lbl 764044 `"Maha Sarakham"', add
+label define mig1_p_th_lbl 764045 `"Roi Et"', add
+label define mig1_p_th_lbl 764046 `"Kalasin"', add
+label define mig1_p_th_lbl 764047 `"Sakon Nakhon"', add
+label define mig1_p_th_lbl 764048 `"Nakhon Phanom, Mukdahan"', add
+label define mig1_p_th_lbl 764050 `"Chiang Mai"', add
+label define mig1_p_th_lbl 764051 `"Lamphun"', add
+label define mig1_p_th_lbl 764052 `"Lampang"', add
+label define mig1_p_th_lbl 764053 `"Uttaradit"', add
+label define mig1_p_th_lbl 764054 `"Phrae"', add
+label define mig1_p_th_lbl 764055 `"Nan"', add
+label define mig1_p_th_lbl 764057 `"Phayao, Chiang Rai"', add
+label define mig1_p_th_lbl 764058 `"Mae Hong Son"', add
+label define mig1_p_th_lbl 764060 `"Nakhon Sawan"', add
+label define mig1_p_th_lbl 764061 `"Uthai Thani"', add
+label define mig1_p_th_lbl 764062 `"Kamphaeng Phet"', add
+label define mig1_p_th_lbl 764063 `"Tak"', add
+label define mig1_p_th_lbl 764064 `"Sukhothai"', add
+label define mig1_p_th_lbl 764065 `"Phitsanulok"', add
+label define mig1_p_th_lbl 764066 `"Phichit"', add
+label define mig1_p_th_lbl 764067 `"Phetchabun"', add
+label define mig1_p_th_lbl 764080 `"Nakhon Si Thammarat"', add
+label define mig1_p_th_lbl 764082 `"Phangnga"', add
+label define mig1_p_th_lbl 764083 `"Phuket"', add
+label define mig1_p_th_lbl 764084 `"Krabi, Surat Thani"', add
+label define mig1_p_th_lbl 764086 `"Ranong, Chumphon"', add
+label define mig1_p_th_lbl 764090 `"Songkhla"', add
+label define mig1_p_th_lbl 764091 `"Satun"', add
+label define mig1_p_th_lbl 764092 `"Trang"', add
+label define mig1_p_th_lbl 764093 `"Phatthalung"', add
+label define mig1_p_th_lbl 764094 `"Pattani"', add
+label define mig1_p_th_lbl 764095 `"Yala"', add
+label define mig1_p_th_lbl 764096 `"Narathiwat"', add
+label define mig1_p_th_lbl 764097 `"Same province"', add
+label define mig1_p_th_lbl 764098 `"Unknown province, but within Thaliand"', add
+label define mig1_p_th_lbl 764997 `"Abroad"', add
+label define mig1_p_th_lbl 764998 `"Unknown"', add
+label define mig1_p_th_lbl 764999 `"NIU (not in universe)"', add
+label values mig1_p_th mig1_p_th_lbl
 
 * save
 save ".././output/Thailand", replace

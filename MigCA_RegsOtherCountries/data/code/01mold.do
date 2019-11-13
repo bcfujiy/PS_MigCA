@@ -9,7 +9,7 @@ clear all
 
 * Brian's computer
 if "`c(username)'" == "Petrichor" {
-	cd "/Users/`c(username)'/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/code"
+	cd "/Users/`c(username)'/RA/PS_MigCA/MigCA_RegsOtherCountries/data/code"
 }
 
 * Sebastian's computer
@@ -22,7 +22,7 @@ if "`c(username)'" == "Petrichor" {
 
 *** LIST OF LOCATIONS
 * open
-use "../../data/output/Thailand", clear
+use ".././output/Thailand", clear
 
 * define locations
 keep geo1_th
@@ -84,6 +84,11 @@ expand 13
 sort origin destination
 bys origin destination: gen crop = _n - 1
 
+* creating years
+expand 2
+sort origin destination crop
+bys origin destination crop: gen year = _n*10 - 20 + 1980
+
 * save
 sort origin destination crop
-save ".././temp/origin_dest_crop", replace
+save ".././output/origin_dest_crop", replace
