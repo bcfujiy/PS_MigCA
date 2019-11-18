@@ -29,10 +29,19 @@ keep if year == 1980
 * keep HH head
 *keep if relate == 1
 
-* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
-* 4 (coconut), 9 (poultry + other animals), 10 (wood), 
-* 11 (fish), 12 (hunting)
-keep if (ind >= 0 & ind <= 4) | (ind >= 9 & ind <= 12)
+* keep relevant crops: 1 (rice), 2 (corn), 3 (rubber), 5 (cassava), 
+* 6 (coconut), 19 (wood), 20 (fish), 21 (hunting)
+keep if (ind >= 1 & ind <= 3) | (ind >= 5 & ind <= 6) | (ind >= 19 & ind <= 21)
+
+* matching with 1970 census industries
+replace ind = 0 if ind == 1
+replace ind = 1 if ind == 2
+replace ind = 2 if ind == 3
+replace ind = 3 if ind == 5
+replace ind = 4 if ind == 6
+replace ind = 10 if ind == 19
+replace ind = 11 if ind == 20
+replace ind = 12 if ind == 21
 
 * RHS variable
 gen L_iktlag = 1
@@ -48,6 +57,8 @@ rename ind crop
 collapse (sum) L_iktlag, by(origin crop year)
 
 * save
+rename L_iktlag L_iktlag_80
+drop year
 sort origin crop
 save ".././output/L_iktlag_80", replace
 
@@ -64,10 +75,19 @@ keep if year == 1980
 * keep HH head
 keep if relate == 1
 
-* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
-* 4 (coconut), 9 (poultry + other animals), 10 (wood), 
-* 11 (fish), 12 (hunting)
-keep if (ind >= 0 & ind <= 4) | (ind >= 9 & ind <= 12)
+* keep relevant crops: 1 (rice), 2 (corn), 3 (rubber), 5 (cassava), 
+* 6 (coconut), 19 (wood), 20 (fish), 21 (hunting)
+keep if (ind >= 1 & ind <= 3) | (ind >= 5 & ind <= 6) | (ind >= 19 & ind <= 21)
+
+* matching with 1970 census industries
+replace ind = 0 if ind == 1
+replace ind = 1 if ind == 2
+replace ind = 2 if ind == 3
+replace ind = 3 if ind == 5
+replace ind = 4 if ind == 6
+replace ind = 10 if ind == 19
+replace ind = 11 if ind == 20
+replace ind = 12 if ind == 21
 
 * place of birth, dropping unknowns or foreign country
 drop if bplth >= 97 & bplth <= 99
@@ -116,10 +136,19 @@ keep if year == 1980
 * keep HH head
 keep if relate == 1
 
-* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
-* 4 (coconut), 9 (poultry + other animals), 10 (wood), 
-* 11 (fish), 12 (hunting)
-keep if (ind >= 0 & ind <= 4) | (ind >= 9 & ind <= 12)
+* keep relevant crops: 1 (rice), 2 (corn), 3 (rubber), 5 (cassava), 
+* 6 (coconut), 19 (wood), 20 (fish), 21 (hunting)
+keep if (ind >= 1 & ind <= 3) | (ind >= 5 & ind <= 6) | (ind >= 19 & ind <= 21)
+
+* matching with 1970 census industries
+replace ind = 0 if ind == 1
+replace ind = 1 if ind == 2
+replace ind = 2 if ind == 3
+replace ind = 3 if ind == 5
+replace ind = 4 if ind == 6
+replace ind = 10 if ind == 19
+replace ind = 11 if ind == 20
+replace ind = 12 if ind == 21
 
 * place of birth, dropping unknowns or foreign country
 drop if bplth >= 97 & bplth <= 99
@@ -171,10 +200,19 @@ keep if year == 1980
 * keep HH head
 keep if relate == 1
 
-* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
-* 4 (coconut), 9 (poultry + other animals), 10 (wood), 
-* 11 (fish), 12 (hunting)
-keep if (ind >= 0 & ind <= 4) | (ind >= 9 & ind <= 12)
+* keep relevant crops: 1 (rice), 2 (corn), 3 (rubber), 5 (cassava), 
+* 6 (coconut), 19 (wood), 20 (fish), 21 (hunting)
+keep if (ind >= 1 & ind <= 3) | (ind >= 5 & ind <= 6) | (ind >= 19 & ind <= 21)
+
+* matching with 1970 census industries
+replace ind = 0 if ind == 1
+replace ind = 1 if ind == 2
+replace ind = 2 if ind == 3
+replace ind = 3 if ind == 5
+replace ind = 4 if ind == 6
+replace ind = 10 if ind == 19
+replace ind = 11 if ind == 20
+replace ind = 12 if ind == 21
 
 * place of birth, dropping unknowns or foreign country
 drop if bplth >= 97 & bplth <= 99

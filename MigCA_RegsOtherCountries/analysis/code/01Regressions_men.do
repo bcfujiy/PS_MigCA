@@ -61,7 +61,7 @@ estimates store reg11_70lag80_ppml2
 
 * Tables
 noi: esttab reg11_70lag80_ols reg11_70lag80_ppml1 reg11_70lag80_ppml2 using ".././output/reg11_70lag80_men.tex", ///
-se compress drop(_cons) stats(N r2_p, label("Observations" "Pseudo R-sq")) ///
+se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
 
 ********************************************************************************
@@ -109,7 +109,7 @@ estimates store reg11_70_ppml2
 
 * Tables
 noi: esttab reg11_70_ols reg11_70_ppml1 reg11_70_ppml2 using ".././output/reg11_70_men.tex", ///
-se compress drop(_cons) stats(N r2_p, label("Observations" "Pseudo R-sq")) ///
+se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
 
 ********************************************************************************
@@ -157,7 +157,7 @@ estimates store reg11_80_ppml2
 
 * Tables
 noi: esttab reg11_80_ols reg11_80_ppml1 reg11_80_ppml2 using ".././output/reg11_80_men.tex", ///
-se compress drop(_cons) stats(N r2_p, label("Observations" "Pseudo R-sq")) ///
+se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
 
 ********************************************************************************
@@ -247,5 +247,5 @@ estimates store reg11_7080_ppml2
 
 * Tables
 noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 using ".././output/reg11_7080_men.tex", ///
-se compress drop(_cons) stats(N r2_p, label("Observations" "Pseudo R-sq")) ///
+se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
