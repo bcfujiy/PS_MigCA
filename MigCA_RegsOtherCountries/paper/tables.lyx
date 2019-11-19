@@ -118,9 +118,12 @@ These are regressions of migration flows on previous stock of workers for
  that we use is the province where the person was born.
  As in the original paper, we exclude cases where the origin province are
  equal to the destination province in the regressions.
- On each table, we report three types of estimators, one by column.
- The first one is OLS, the second is PPML, and the third is PPML excluding
- zeros.
+ On each table, we report four types of estimators, one by column.
+ The first one is OLS, the second is PPML, the third is PPML excluding zeros,
+ and the fourth one is PPML only including destination/crop/year fixed effects.
+ This last column we do it since it seems that the origin/destination/year
+ fixed effects are soaking up too much variation, which reduces the sample
+ size tremendously.
  Each table reports four subtables: the first one is the case when the 1970
  census is used to contruct 
 \begin_inset Formula $L_{ikt-1}$
@@ -414,6 +417,80 @@ The 1970 census had a sample of 2% for a total of 772169 people, where district
  There are ocassions where the production of some crop in some province
  disappears in or the production of a new crop appears in 1980, but in the
  majority of cases production of a crop happens in both census.
+\end_layout
+
+\begin_layout Section
+Regressions with migration flows at the person level
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Baseline regressions
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:person"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_70lag80_person.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_70_person.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_80_person.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_7080_person.tex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
