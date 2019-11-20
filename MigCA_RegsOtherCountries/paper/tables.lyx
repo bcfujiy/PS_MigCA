@@ -118,12 +118,10 @@ These are regressions of migration flows on previous stock of workers for
  that we use is the province where the person was born.
  As in the original paper, we exclude cases where the origin province are
  equal to the destination province in the regressions.
- On each table, we report four types of estimators, one by column.
+ On each table, we report five types of estimators, one by column.
  The first one is OLS, the second is PPML, the third is PPML excluding zeros,
- and the fourth one is PPML only including destination/crop/year fixed effects.
- This last column we do it since it seems that the origin/destination/year
- fixed effects are soaking up too much variation, which reduces the sample
- size tremendously.
+ the fourth one is PPML only including destination/crop/year fixed effects,
+ and the fifth one is OLS with only destination/crop/year fixed effects.
  Each table reports four subtables: the first one is the case when the 1970
  census is used to contruct 
 \begin_inset Formula $L_{ikt-1}$

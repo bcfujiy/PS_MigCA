@@ -63,8 +63,12 @@ estimates store reg11_70lag80_ppml2
 ppmlhdfe L_ijkt L_iktlag_log if origin != destination & L_ijkt != 0, absorb(iota_jkt) vce(cluster iota_jkt)
 estimates store reg11_70lag80_ppml3
 
+* Regression (11), OLS with only jkt fixed effects
+reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
+estimates store reg11_70lag80_ols1
+
 * Tables
-noi: esttab reg11_70lag80_ols reg11_70lag80_ppml1 reg11_70lag80_ppml2 reg11_70lag80_ppml3 using ".././output/reg11_70lag80_men_20-65.tex", ///
+noi: esttab reg11_70lag80_ols reg11_70lag80_ppml1 reg11_70lag80_ppml2 reg11_70lag80_ppml3 reg11_70lag80_ols1 using ".././output/reg11_70lag80_men_20-65.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
 
@@ -115,8 +119,12 @@ estimates store reg11_70_ppml2
 ppmlhdfe L_ijkt L_iktlag_log if origin != destination & L_ijkt != 0, absorb(iota_jkt) vce(cluster iota_jkt)
 estimates store reg11_70_ppml3
 
+* Regression (11), OLS with only jkt fixed effects
+reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
+estimates store reg11_70_ols1
+
 * Tables
-noi: esttab reg11_70_ols reg11_70_ppml1 reg11_70_ppml2 reg11_70_ppml3 using ".././output/reg11_70_men_20-65.tex", ///
+noi: esttab reg11_70_ols reg11_70_ppml1 reg11_70_ppml2 reg11_70_ppml3 reg11_70_ols1 using ".././output/reg11_70_men_20-65.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
 
@@ -167,8 +175,12 @@ estimates store reg11_80_ppml2
 ppmlhdfe L_ijkt L_iktlag_log if origin != destination & L_ijkt != 0, absorb(iota_jkt) vce(cluster iota_jkt)
 estimates store reg11_80_ppml3
 
+* Regression (11), OLS with only jkt fixed effects
+reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
+estimates store reg11_80_ols1
+
 * Tables
-noi: esttab reg11_80_ols reg11_80_ppml1 reg11_80_ppml2 reg11_80_ppml3 using ".././output/reg11_80_men_20-65.tex", ///
+noi: esttab reg11_80_ols reg11_80_ppml1 reg11_80_ppml2 reg11_80_ppml3 reg11_80_ols1 using ".././output/reg11_80_men_20-65.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
 
@@ -261,7 +273,11 @@ estimates store reg11_7080_ppml2
 ppmlhdfe L_ijkt L_iktlag_log if origin != destination & L_ijkt != 0, absorb(iota_jkt) vce(cluster iota_jkt)
 estimates store reg11_7080_ppml3
 
+* Regression (11), OLS with only jkt fixed effects
+reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
+estimates store reg11_7080_ols1
+
 * Tables
-noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 reg11_7080_ppml3 using ".././output/reg11_7080_men_20-65.tex", ///
+noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 reg11_7080_ppml3 reg11_7080_ols1 using ".././output/reg11_7080_men_20-65.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
