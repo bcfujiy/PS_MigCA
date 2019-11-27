@@ -240,12 +240,12 @@ drop _merge
 
 * merge with w_ijkt
 sort origin destination crop
-merge origin destination crop using "../../data/output/w_ijkt_za_07"
+merge origin destination crop using "../../data/output/w_ijkt_za_07_men_20-65"
 drop _merge year
 
 * merge with L_ijkt
 sort origin destination crop
-merge origin destination crop using "../../data/output/L_ijkt_za_07"
+merge origin destination crop using "../../data/output/L_ijkt_za_07_men_20-65"
 sort origin destination crop
 drop _merge year
 
@@ -285,7 +285,7 @@ reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(c
 estimates store reg11_za_ols1
 
 * Tables
-noi: esttab reg11_za_ols reg11_za_ppml1 reg11_za_ppml2 reg11_za_ppml3 reg11_za_ols1 using ".././output/reg11_za.tex", ///
+noi: esttab reg11_za_ols reg11_za_ppml1 reg11_za_ppml2 reg11_za_ppml3 reg11_za_ols1 using ".././output/reg11_za_men_20-65.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace ///
 star (* 0.10 ** 0.05 *** 0.01)
@@ -309,7 +309,7 @@ reghdfe w_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(c
 estimates store reg10_za_ols1
 
 * Tables
-noi: esttab reg10_za_ols reg10_za_ppml1 reg10_za_ppml2 reg10_za_ols1 using ".././output/reg10_za.tex", ///
+noi: esttab reg10_za_ols reg10_za_ppml1 reg10_za_ppml2 reg10_za_ols1 using ".././output/reg10_za_men_20-65.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace ///
 star (* 0.10 ** 0.05 *** 0.01)

@@ -32,7 +32,7 @@ drop _merge
 
 * merge with L_ijkt
 sort origin destination crop
-merge origin destination crop using "../../data/output/L_ijkt_80_men"
+merge origin destination crop using "../../data/output/L_ijkt_80"
 sort origin destination crop
 drop _merge
 
@@ -48,30 +48,41 @@ egen iota_jkt = group(destination crop)
 egen iota_ijt = group(origin destination)
 
 * Regression (11), OLS
-reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
-estimates store reg11_70lag80_ols
+eststo: quiet reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
+estadd local ijt "Yes"
+estadd local jkt "Yes"
 
 * Regression (11), PPML
-ppmlhdfe L_ijkt L_iktlag_log if origin != destination, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
-estimates store reg11_70lag80_ppml1
+eststo: quiet ppmlhdfe L_ijkt L_iktlag_log if origin != destination, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
+estadd scalar r2 e(r2_p)
+estadd local ijt "Yes"
+estadd local jkt "Yes"
+estadd local zeros "Yes"
 
 * Regression (11), PPML without zeros
-ppmlhdfe L_ijkt L_iktlag_log if origin != destination & L_ijkt != 0, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
-estimates store reg11_70lag80_ppml2
+eststo: quiet ppmlhdfe L_ijkt L_iktlag_log if origin != destination & L_ijkt != 0, absorb(iota_jkt iota_ijt) vce(cluster iota_jkt)
+estadd scalar r2 e(r2_p)
+estadd local ijt "Yes"
+estadd local jkt "Yes"
 
 * Regression (11), PPML with only jkt fixed effects
-ppmlhdfe L_ijkt L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
-estimates store reg11_70lag80_ppml3
+eststo: quiet ppmlhdfe L_ijkt L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
+estadd scalar r2 e(r2_p)
+estadd local jkt "Yes"
+estadd local zeros "Yes"
 
 * Regression (11), OLS with only jkt fixed effects
-reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
-estimates store reg11_70lag80_ols1
+eststo: quiet reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(cluster iota_jkt)
+estadd local jkt "Yes"
 
 * Tables
-noi: esttab reg11_70lag80_ols reg11_70lag80_ppml1 reg11_70lag80_ppml2 reg11_70lag80_ppml3 reg11_70lag80_ols1 using ".././output/reg11_70lag80_men.tex", ///
-se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace ///
-star (* 0.10 ** 0.05 *** 0.01)
+noi: esttab using ".././output/reg11_70lag80.tex", ///
+mtitle("OLS" "PPML" "PPML" "PPML" "OLS") ///
+se compress drop(_cons) stats(N r2 ijt jkt zeros, label("Observations" "R2" "Origin-Dest-Time FE" "Dest-Crop-Time FE" "Includes L_{ijkt} = 0?")) ///
+label replace nonumbers
+
+* clear
+eststo clear
 
 ********************************************************************************
 *** 1970 (t, and t-1)
@@ -89,7 +100,7 @@ drop _merge
 
 * merge with L_ijkt
 sort origin destination crop
-merge origin destination crop using "../../data/output/L_ijkt_70_men"
+merge origin destination crop using "../../data/output/L_ijkt_70"
 sort origin destination crop
 drop _merge
 
@@ -125,10 +136,9 @@ reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(c
 estimates store reg11_70_ols1
 
 * Tables
-noi: esttab reg11_70_ols reg11_70_ppml1 reg11_70_ppml2 reg11_70_ppml3 reg11_70_ols1 using ".././output/reg11_70_men.tex", ///
+noi: esttab reg11_70_ols reg11_70_ppml1 reg11_70_ppml2 reg11_70_ppml3 reg11_70_ols1 using ".././output/reg11_70.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace ///
-star (* 0.10 ** 0.05 *** 0.01)
+label nodepvars nomtitles replace
 
 ********************************************************************************
 *** 1980 (t, and t-1)
@@ -146,7 +156,7 @@ drop _merge
 
 * merge with L_ijkt
 sort origin destination crop
-merge origin destination crop using "../../data/output/L_ijkt_80_men"
+merge origin destination crop using "../../data/output/L_ijkt_80"
 sort origin destination crop
 drop _merge
 
@@ -182,10 +192,9 @@ reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(c
 estimates store reg11_80_ols1
 
 * Tables
-noi: esttab reg11_80_ols reg11_80_ppml1 reg11_80_ppml2 reg11_80_ppml3 reg11_80_ols1 using ".././output/reg11_80_men.tex", ///
+noi: esttab reg11_80_ols reg11_80_ppml1 reg11_80_ppml2 reg11_80_ppml3 reg11_80_ols1 using ".././output/reg11_80.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace ///
-star (* 0.10 ** 0.05 *** 0.01)
+label nodepvars nomtitles replace
 
 ********************************************************************************
 *** 1970 and 1980 together, year dimension becomes important
@@ -200,13 +209,13 @@ use "../../data/output/L_iktlag_80", clear
 sort origin crop year
 save "../../data/output/L_iktlag_80", replace
 
-use "../../data/output/L_ijkt_70_men", clear
+use "../../data/output/L_ijkt_70", clear
 sort origin destination crop year
-save "../../data/output/L_ijkt_70_men", replace
+save "../../data/output/L_ijkt_70", replace
 
-use "../../data/output/L_ijkt_80_men", clear
+use "../../data/output/L_ijkt_80", clear
 sort origin destination crop year
-save "../../data/output/L_ijkt_80_men", replace
+save "../../data/output/L_ijkt_80", replace
 
 * open
 use "../../data/output/origin_dest_crop", clear
@@ -218,7 +227,7 @@ drop _merge
 
 * merge with L_ijkt, 1970
 sort origin destination crop year
-merge origin destination crop year using "../../data/output/L_ijkt_70_men"
+merge origin destination crop year using "../../data/output/L_ijkt_70"
 drop _merge
 
 * save
@@ -236,7 +245,7 @@ drop _merge
 
 * merge with L_ijkt, 1980
 sort origin destination crop year
-merge origin destination crop year using "../../data/output/L_ijkt_80_men"
+merge origin destination crop year using "../../data/output/L_ijkt_80"
 drop _merge
 
 * save
@@ -281,7 +290,6 @@ reghdfe L_ijkt_log L_iktlag_log if origin != destination, absorb(iota_jkt) vce(c
 estimates store reg11_7080_ols1
 
 * Tables
-noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 reg11_7080_ppml3 reg11_7080_ols1 using ".././output/reg11_7080_men.tex", ///
+noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 reg11_7080_ppml3 reg11_7080_ols1 using ".././output/reg11_7080.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace ///
-star (* 0.10 ** 0.05 *** 0.01)
+label nodepvars nomtitles replace

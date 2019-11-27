@@ -21,22 +21,19 @@ if "`c(username)'" == "Petrichor" {
 ********************************************************************************
 
 * open
-use ".././output/SouthAfrica", clear
+use ".././output/Brazil", clear
 
-* 2001
-keep if year == 2001
+* 1970
+keep if year == 1980
 
-* drop unknown origin locations
-drop if geo1_za2001 == 99
+* keep HH head
+keep if relate == 1
 
-* keep relevant crops
-*keep if (ind >= 111 & ind <= 118) | (ind >= 121 & ind <= 130) ///
-*| (ind >= 141 & ind <= 142) | (ind >= 151 & ind <= 153) ///
-*| (ind == 160) | (ind >= 171 & ind <= 178) ///
-*| (ind >= 181 & ind <= 183) | (ind == 190)
-
-keep if (ind >= 111 & ind <= 117) | (ind >= 121 & ind <= 127) ///
-| (ind >= 141 & ind <= 142) | (ind >= 151 & ind <= 153)
+* keep relevant crops: 14 (banana), 19 (cassava root), 27 (poultry raising), 
+* 15 (cocoa beans), 16 (coffee), 12 (cotton), 20 (corn), 41 (fishing), 
+* 23 (horticulture and floriculture), 26 (livestock), 13 (rice), 21 (soy beans), 
+* 17 (sugar cane), 18 (tobacco)
+keep if (ind >= 12 & ind <= 21) | ind == 23 | ind == 26 | ind == 27 | ind == 41
 
 * RHS variable
 gen L_iktlag = 1
@@ -45,7 +42,7 @@ gen L_iktlag = 1
 replace L_iktlag = L_iktlag*perwt
 
 * renames
-rename geo1_za2001 origin
+rename mesobr origin
 rename ind crop
 
 * collapse
@@ -53,38 +50,40 @@ collapse (sum) L_iktlag, by(origin crop year)
 
 * save
 sort origin crop
-save ".././output/L_iktlag_za_01", replace
+save ".././output/L_iktlag_br_80", replace
 
 ********************************************************************************
 *** L_ijkt
 ********************************************************************************
 
 * open
-use ".././output/SouthAfrica", clear
+use ".././output/Brazil", clear
 
-* 2001
-keep if year == 2001
+* 1980
+keep if year == 2010
 
 * keep HH head
 keep if relate == 1
-keep if sex == 1
 
-* keep relevant crops
-*keep if (ind >= 111 & ind <= 118) | (ind >= 121 & ind <= 130) ///
-*| (ind >= 141 & ind <= 142) | (ind >= 151 & ind <= 153) ///
-*| (ind == 160) | (ind >= 171 & ind <= 178) ///
-*| (ind >= 181 & ind <= 183) | (ind == 190)
-
-keep if (ind >= 111 & ind <= 117) | (ind >= 121 & ind <= 127) ///
-| (ind >= 141 & ind <= 142) | (ind >= 151 & ind <= 153)
+* keep relevant crops: 1116 (banana), 1108 (manioc root), 1205 (poultry raising), 
+* 1114 (cocoa beans), 1113 (coffee), 1104 (herbaceous cotton), 1102 (corn), 
+* 3001 (fishing), 1111 (flowers, ornamental plants), 1201 (cattle raising), 
+* 1101 (rice), 1107 (soy beans), 1105 (sugar cane), 1106 (tobacco)
+keep if ind == 1101 | ind == 1102 | (ind >= 1104 & ind <= 1108) | ind == 1111 ///
+| ind == 1113 | ind == 1114 | ind == 1116 | ind == 1201 | ind == 1205 | ind == 3001
 
 * place of birth, dropping unknowns or foreign country
-drop if bplza == 98 | bplza == 90
-drop if geo1_za2001 == 99
+drop if bplth >= 97 & bplth <= 99
+
+* drop unknown previous location
+*drop if geomig1_p == 764999 | geomig1_p == 764098 | geomig1_p == 764997 ///
+*| geomig1_p == 764998
+
+* attaching previous location
+*replace geomig1_p = geo1_th if geomig1_p == 764097
 
 * keep ages 30-65
 keep if age >= 30 & age <= 65
-*keep if age >= 20 & age <= 65
 
 * RHS variable
 gen L_ijkt = 1
@@ -93,75 +92,24 @@ gen L_ijkt = 1
 replace L_ijkt = L_ijkt*perwt
 
 * renames
-rename bplza origin
-rename geo1_za2001 destination
+rename bplth origin
+rename geo1_th destination
 rename ind crop
 
 * collapse
 collapse (sum) L_ijkt, by(origin destination crop year)
 
-* save
-sort origin destination crop
-save ".././output/L_ijkt_za_01", replace
-
-********************************************************************************
-*** w_ijkt
-********************************************************************************
-
-* open
-use ".././output/SouthAfrica", clear
-
-* 2007
-keep if year == 2001
-
-* keep HH head
-keep if relate == 1
-keep if sex == 1
-
-* keep relevant crops
-*keep if (ind >= 111 & ind <= 118) | (ind >= 121 & ind <= 130) ///
-*| (ind >= 141 & ind <= 142) | (ind >= 151 & ind <= 153) ///
-*| (ind == 160) | (ind >= 171 & ind <= 178) ///
-*| (ind >= 181 & ind <= 183) | (ind == 190)
-
-keep if (ind >= 111 & ind <= 117) | (ind >= 121 & ind <= 127) ///
-| (ind >= 141 & ind <= 142) | (ind >= 151 & ind <= 153)
-
-* place of birth, dropping unknowns or foreign country
-drop if bplza == 98 | bplza == 90
-drop if geo1_za2001 == 99
-
-* keep ages 30-65
-keep if age >= 30 & age <= 65
-*keep if age >= 20 & age <= 65
-
-* drop missing income
-drop if inctot >= 9999998
-
-* renames
-rename bplza origin
-rename geo1_za2001 destination
-rename ind crop
-
-* LHS variable, intermediate step
-gen w_ijkt = inctot*perwt
-bys origin destination crop: egen w_ijkt_den = total(perwt)
-
-* collapse
-collapse (sum) w_ijkt (mean) w_ijkt_den, by(origin destination crop year)
-
-* LHS variable
-replace w_ijkt = w_ijkt/w_ijkt_den
-drop w_ijkt_den
+* fixing origin variable
+replace origin = origin + 764000
 
 * save
 sort origin destination crop
-save ".././output/w_ijkt_za_01", replace
+save ".././output/L_ijkt_70", replace
 
 ********************************************************************************
 *** L_ijkt, only men HH heads
 ********************************************************************************
-/*
+
 * open
 use ".././output/Thailand", clear
 
@@ -172,9 +120,8 @@ keep if year == 1970
 keep if relate == 1
 
 * keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
-* 4 (coconut), 9 (poultry + other animals), 10 (wood), 
-* 11 (fish), 12 (hunting)
-keep if (ind >= 0 & ind <= 4) | (ind >= 9 & ind <= 12)
+* 4 (coconut), 10 (wood), 11 (fish), 12 (hunting)
+keep if (ind >= 0 & ind <= 4) | (ind >= 10 & ind <= 12)
 
 * place of birth, dropping unknowns or foreign country
 drop if bplth >= 97 & bplth <= 99
@@ -227,9 +174,8 @@ keep if year == 1970
 keep if relate == 1
 
 * keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
-* 4 (coconut), 9 (poultry + other animals), 10 (wood), 
-* 11 (fish), 12 (hunting)
-keep if (ind >= 0 & ind <= 4) | (ind >= 9 & ind <= 12)
+* 4 (coconut), 10 (wood), 11 (fish), 12 (hunting)
+keep if (ind >= 0 & ind <= 4) | (ind >= 10 & ind <= 12)
 
 * place of birth, dropping unknowns or foreign country
 drop if bplth >= 97 & bplth <= 99
@@ -267,3 +213,54 @@ replace origin = origin + 764000
 * save
 sort origin destination crop
 save ".././output/L_ijkt_70_men_20-65", replace
+
+********************************************************************************
+*** L_ijkt, person level
+********************************************************************************
+
+* open
+use ".././output/Thailand", clear
+
+* 1980
+keep if year == 1970
+
+* keep HH head
+keep if relate == 1
+
+* keep relevant crops: 0 (rice), 1 (corn), 2 (rubber), 3 (cassava), 
+* 4 (coconut), 10 (wood), 11 (fish), 12 (hunting)
+keep if (ind >= 0 & ind <= 4) | (ind >= 10 & ind <= 12)
+
+* place of birth, dropping unknowns or foreign country
+drop if bplth >= 97 & bplth <= 99
+
+* drop unknown previous location
+*drop if geomig1_p == 764999 | geomig1_p == 764098 | geomig1_p == 764997 ///
+*| geomig1_p == 764998
+
+* attaching previous location
+*replace geomig1_p = geo1_th if geomig1_p == 764097
+
+* keep ages 30-65
+keep if age >= 30 & age <= 65
+
+* LHS variable
+gen L_wijkt = 1
+
+* Weighting
+replace L_wijkt = L_wijkt*perwt
+
+* renames
+rename bplth origin
+rename geo1_th destination
+rename ind crop
+
+* fixing origin variable
+replace origin = origin + 764000
+
+* keep relevant variables
+keep L_wijkt origin destination crop year
+
+* save
+sort origin destination crop
+save ".././output/L_ijkt_70_person", replace

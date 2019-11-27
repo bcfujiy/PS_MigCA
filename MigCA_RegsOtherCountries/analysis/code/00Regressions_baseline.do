@@ -70,7 +70,8 @@ estimates store reg11_70lag80_ols1
 * Tables
 noi: esttab reg11_70lag80_ols reg11_70lag80_ppml1 reg11_70lag80_ppml2 reg11_70lag80_ppml3 reg11_70lag80_ols1 using ".././output/reg11_70lag80.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace
+label nodepvars nomtitles replace ///
+star (* 0.10 ** 0.05 *** 0.01)
 
 ********************************************************************************
 *** 1970 (t, and t-1)
@@ -126,7 +127,8 @@ estimates store reg11_70_ols1
 * Tables
 noi: esttab reg11_70_ols reg11_70_ppml1 reg11_70_ppml2 reg11_70_ppml3 reg11_70_ols1 using ".././output/reg11_70.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace
+label nodepvars nomtitles replace ///
+star (* 0.10 ** 0.05 *** 0.01)
 
 ********************************************************************************
 *** 1980 (t, and t-1)
@@ -182,7 +184,8 @@ estimates store reg11_80_ols1
 * Tables
 noi: esttab reg11_80_ols reg11_80_ppml1 reg11_80_ppml2 reg11_80_ppml3 reg11_80_ols1 using ".././output/reg11_80.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace
+label nodepvars nomtitles replace ///
+star (* 0.10 ** 0.05 *** 0.01)
 
 ********************************************************************************
 *** 1970 and 1980 together, year dimension becomes important
@@ -280,4 +283,5 @@ estimates store reg11_7080_ols1
 * Tables
 noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 reg11_7080_ppml3 reg11_7080_ols1 using ".././output/reg11_7080.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
-label nodepvars nomtitles replace
+label nodepvars nomtitles replace ///
+star (* 0.10 ** 0.05 *** 0.01)
