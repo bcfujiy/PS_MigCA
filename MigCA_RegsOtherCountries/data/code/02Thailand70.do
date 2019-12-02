@@ -243,7 +243,7 @@ keep if age >= 30 & age <= 65
 gen L_wijkt = 1
 
 * Weighting
-replace L_wijkt = L_wijkt*perwt
+*replace L_wijkt = L_wijkt*perwt
 
 * renames
 rename bplth origin

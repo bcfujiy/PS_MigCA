@@ -5,6 +5,10 @@
 * housekeeping
 clear all
 
+* matsize
+set matsize 11000
+set maxvar 32767
+
 *** set directory
 
 * Brian's computer

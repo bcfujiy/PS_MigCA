@@ -67,7 +67,6 @@ keep if year == 2007
 
 * keep HH head
 keep if relate == 1
-*keep if sex == 1
 
 * keep relevant crops
 *keep if (ind >= 111 & ind <= 118) | (ind >= 121 & ind <= 130) ///
@@ -86,7 +85,6 @@ drop if bplza == 98 | bplza == 90
 
 * keep ages 30-65
 keep if age >= 30 & age <= 65
-*keep if age >= 20 & age <= 65
 
 * RHS variable
 gen L_ijkt = 1
@@ -137,7 +135,6 @@ drop if bplza == 98 | bplza == 90
 
 * keep ages 30-65
 keep if age >= 30 & age <= 65
-*keep if age >= 20 & age <= 65
 
 * RHS variable
 gen L_ijkt = 1
@@ -187,7 +184,6 @@ keep if (ind >= 111 & ind <= 117) | (ind >= 121 & ind <= 127) ///
 drop if bplza == 98 | bplza == 90
 
 * keep ages 30-65
-*keep if age >= 30 & age <= 65
 keep if age >= 20 & age <= 65
 
 * RHS variable
@@ -220,7 +216,6 @@ keep if year == 2007
 
 * keep HH head
 keep if relate == 1
-*keep if sex == 1
 
 * keep relevant crops
 *keep if (ind >= 111 & ind <= 118) | (ind >= 121 & ind <= 130) ///
@@ -239,7 +234,6 @@ drop if bplza == 98 | bplza == 90
 
 * keep ages 30-65
 keep if age >= 30 & age <= 65
-*keep if age >= 20 & age <= 65
 
 * drop missing income
 drop if inctot >= 9999998
@@ -295,7 +289,6 @@ drop if bplza == 98 | bplza == 90
 
 * keep ages 30-65
 keep if age >= 30 & age <= 65
-*keep if age >= 20 & age <= 65
 
 * drop missing income
 drop if inctot >= 9999998
@@ -350,7 +343,6 @@ keep if (ind >= 111 & ind <= 117) | (ind >= 121 & ind <= 127) ///
 drop if bplza == 98 | bplza == 90
 
 * keep ages 30-65
-*keep if age >= 30 & age <= 65
 keep if age >= 20 & age <= 65
 
 * drop missing income

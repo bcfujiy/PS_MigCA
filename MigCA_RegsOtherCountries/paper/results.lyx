@@ -348,12 +348,53 @@ The 1970 census had a sample of 2% for a total of 772169 people, where district
 \end_layout
 
 \begin_layout Section
-Thailand, regressions with migration flows at the person level [[THIS NEEDS
- MORE WORK]]
+Thailand, regressions with migration flows at the person level
 \end_layout
 
 \begin_layout Standard
-XXX
+Still working on this, but I've been thinking expanding the datasets according
+ to the person weights and then run probit regressions since we assume that
+ the error terms in the transmission of knowledge regression distributes
+ lognormal.
+ Regarding the first point, that is, if a row has a person weight of 38,
+ which means that that observation represents 38 people in ZA, then I repeat
+ that row 38 times.
+ This will yield millions of observations.
+ Regarding the second point, this would be a probit regression where the
+ dependent variable is the dummy variable 
+\begin_inset Formula $L_{wijkt}$
+\end_inset
+
+, which equals 1 when the person 
+\begin_inset Formula $w$
+\end_inset
+
+ lives in region 
+\begin_inset Formula $j$
+\end_inset
+
+, was born in region 
+\begin_inset Formula $i$
+\end_inset
+
+, grows crop 
+\begin_inset Formula $k$
+\end_inset
+
+, 0 otherwise.
+ Given that in the equation 
+\begin_inset Formula $log(u^{migration})$
+\end_inset
+
+ distributes normal, then the probability that 
+\begin_inset Formula $L_{wijkt}=1$
+\end_inset
+
+ is 
+\begin_inset Formula $\Phi(\iota_{jkt}+\iota_{ijt}+\kappa\beta logL_{ijkt-1})$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -367,47 +408,50 @@ These are the regressions for the 2007 census of South Africa.
  farming, fruit farming, vineyards, sugar cane, cotton, cattle, chicken,
  horse, dairy, sheep, ostrich, goat, ocean fishing, inland fishing, fish
  farms, and mixed farming.
- For regression, we calculate average earnings by origin-destination-crop.
+ For the regressions of wages of migrant farmers on 
+\begin_inset Formula $L_{ikt-1}$
+\end_inset
+
+, we calculate average earnings by origin-destination-crop.
  The origin variable is determined by which province the person was born.
  In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "tab:reg10_za"
+reference "tab:regs_ZA_L"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- we include the regressions of earnings on 
+ we construct both 
 \begin_inset Formula $L_{ikt-1}$
 \end_inset
 
-.
- The first subtable is the baseline regression where earnings is calculated
- for head of HHs between 30 and 65 years old.
- The second subtable is for men head of HHs between 30 and 65 years old.
- The third subtable is for men head of HHs between 20 and 65 years old.
- Each subtable has four columns.
- The first column is OLS, the second one is PPML, the third one is PPML
- with only destination-crop FEs, and the fourth one is OLS with only destination
--crop FEs.
+ and 
+\begin_inset Formula $L_{ijkt}$
+\end_inset
+
+ based on the 2007 census.
  In Table 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "tab:reg11_za"
+reference "tab:regs_ZA_w"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
- we present the same, but for migration flows.
- The only difference is that there is an extra middle column in each subtable,
- which is PPML but excluding rows where no migration flows into the destination
- province.
- Results are somewhat promising for migration flows, but find nothing for
- earnings.
+ we construct both 
+\begin_inset Formula $L_{ikt-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{ijkt}$
+\end_inset
+
+ from the 2007 census.
 \end_layout
 
 \begin_layout Standard
@@ -420,10 +464,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Regression (10), baseline + HH men + HH men 20-65
+Migration Flows Regression for ZA, 2007
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:reg10_za"
+name "tab:regs_ZA_L"
 
 \end_inset
 
@@ -438,27 +482,7 @@ name "tab:reg10_za"
 \begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
-filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg10_za.tex"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg10_za_men.tex"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg10_za_men_20-65.tex"
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/regs_ZA_L.tex"
 
 \end_inset
 
@@ -468,9 +492,6 @@ filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
@@ -480,10 +501,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Regression (11), baseline + HH men + HH men 20-65
+Earnings Regression for ZA, 2007
 \begin_inset CommandInset label
 LatexCommand label
-name "tab:reg11_za"
+name "tab:regs_ZA_w"
 
 \end_inset
 
@@ -498,27 +519,7 @@ name "tab:reg11_za"
 \begin_layout Plain Layout
 \begin_inset CommandInset include
 LatexCommand include
-filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_za.tex"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_za_men.tex"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset CommandInset include
-LatexCommand include
-filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/reg11_za_men_20-65.tex"
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/regs_ZA_w.tex"
 
 \end_inset
 
