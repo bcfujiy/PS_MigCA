@@ -297,12 +297,12 @@ program run_regressions_w_07
 
 	* merge with L_ijkt
 	sort origin destination crop
-	merge origin destination crop using "../../data/output/L_ijkt_za_07_men"
+	merge origin destination crop using "../../data/output/w_ijkt_za_07_men"
 	sort origin destination crop
 	drop _merge
 
 	* variables in logs
-	gen w_ijkt_log = log(L_ijkt)
+	gen w_ijkt_log = log(w_ijkt)
 	gen L_iktlag_log = log(L_iktlag)
 
 	* fixed effects
@@ -335,12 +335,12 @@ program run_regressions_w_07
 
 	* merge with L_ijkt
 	sort origin destination crop
-	merge origin destination crop using "../../data/output/L_ijkt_za_07_men_20-65"
+	merge origin destination crop using "../../data/output/w_ijkt_za_07_men_20-65"
 	sort origin destination crop
 	drop _merge
 
 	* variables in logs
-	gen w_ijkt_log = log(L_ijkt)
+	gen w_ijkt_log = log(w_ijkt)
 	gen L_iktlag_log = log(L_iktlag)
 
 	* fixed effects
