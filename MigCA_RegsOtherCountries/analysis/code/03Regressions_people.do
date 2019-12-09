@@ -23,7 +23,7 @@ if "`c(username)'" == "Petrichor" {
 ********************************************************************************
 *** 1970 (t-1), 1980 (t)
 ********************************************************************************
-
+/*
 * open
 use "../../data/output/origin_dest_crop", clear
 collapse (mean) year, by(origin destination crop)
@@ -269,3 +269,42 @@ estimates store reg11_7080_ppml3
 noi: esttab reg11_7080_ols reg11_7080_ppml1 reg11_7080_ppml2 reg11_7080_ppml3 using ".././output/reg11_7080_person.tex", ///
 se compress drop(_cons) stats(N r2 r2_p, label("Observations" "R2" "Pseudo R2")) ///
 label nodepvars nomtitles replace
+*/
+********************************************************************************
+*** 1970 (t, and t-1)
+********************************************************************************
+
+* open
+use "../../data/output/origin_dest_crop", clear
+collapse (mean) year, by(origin destination crop)
+drop year
+
+* merge with L_iktlag
+sort origin crop
+merge origin crop using "../../data/output/L_iktlag_70"
+drop _merge
+
+* merge with L_wijkt
+sort origin destination crop
+merge origin destination crop using "../../data/output/L_ijkt_70_person"
+sort origin destination crop
+drop _merge
+
+* migration flows that are zero
+replace L_wijkt = 0 if L_wijkt == .
+
+* variables in logs
+gen L_iktlag_log = log(L_iktlag)
+
+* fixed effects
+egen iota_jkt = group(destination crop)
+egen iota_ijt = group(origin destination)
+
+* fix weights
+replace perwt = round(perwt)
+
+* drop
+drop if L_iktlag_log == .
+
+* Regression (11), probit
+probit L_wijkt L_iktlag_log i.iota_jkt if origin != destination, vce(cluster iota_jkt)

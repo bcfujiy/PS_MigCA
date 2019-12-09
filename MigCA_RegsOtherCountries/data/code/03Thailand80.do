@@ -304,7 +304,7 @@ rename ind crop
 replace origin = origin + 764000
 
 * keep relevant variables
-keep L_wijkt origin destination crop year
+keep L_wijkt origin destination crop year perwt
 
 * save
 sort origin destination crop

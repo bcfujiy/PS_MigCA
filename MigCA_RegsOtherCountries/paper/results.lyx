@@ -531,5 +531,96 @@ filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/
 
 \end_layout
 
+\begin_layout Section
+Brazil
+\end_layout
+
+\begin_layout Standard
+These are regressions of migration flows and earnings on previous stock
+ of workers for Brazil.
+ Dependent variables are from census 2000 and 2010, and the main covariate
+ is lagged by thirty years, so it is derived from censuses 1970 and 1980.
+ For both migration flows 
+\begin_inset Formula $L_{ijkt}$
+\end_inset
+
+ and earnings 
+\begin_inset Formula $w_{ijkt}$
+\end_inset
+
+, origin is the state where the person was born, and destination is the
+ mesoregion the person resides at the time of the census.
+ We consider 13 crops: banana, cassava, chicken, cocoa, coffee, cotton,
+ corn, fish, livestock, rice, soy, sugarcane, and tobacco.
+ In contrast to the original paper, we exclude fruits and horticulture since
+ it is unclear how to code this from IPUMS's categorization.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:regs_BR"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ present results for both OLS and PPML regressions.
+ Results are very similar to those in the original paper, but higher values.
+ This might be due to many reasons, including these regressions not including
+ other covariates, the location variable not being as granular (in the original
+ paper, origin and destination are both at the mesoregion), not including
+ fruits and horticulture, our sample of migrants being comprised by 30-65
+ year old head of households, etc.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Influence of the Region of Origin on Earnings and Employment of Agricultural
+ Workers in their Destination Region
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:regs_BR"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand include
+filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/regs_BR.tex"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

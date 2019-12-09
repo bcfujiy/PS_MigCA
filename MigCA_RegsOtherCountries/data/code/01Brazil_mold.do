@@ -17,7 +17,7 @@ if "`c(username)'" == "Petrichor" {
 * Heitor's computer
 
 ********************************************************************************
-*** Creating list of origin/destination
+*** Origin (state)
 ********************************************************************************
 
 *** LIST OF LOCATIONS
@@ -34,61 +34,76 @@ gen baba = 0
 collapse (sum) baba, by(geo1_br)
 drop baba
 
-* save
-sort geo1_br
-save ".././temp/locations_br", replace
-
-*** LIST OF LOCATIONS 1
-* open
-use ".././temp/locations_br", clear
-
 * repeat
-expand 25
+expand 137
 sort geo1_br
-rename geo1_br origin
 
-* save
+* glue
 gen glue = _n
 sort glue
-save ".././temp/locations1_br", replace
 
-*** LIST OF LOCATIONS 2
+* save
+save ".././temp/origin_br", replace
+
+********************************************************************************
+*** Destination (mesoregion)
+********************************************************************************
+
+*** LIST OF LOCATIONS
 * open
-use ".././temp/locations_br", clear
+use ".././output/Brazil", clear
 
-* repeat
+* define locations
+keep mesobr
+
+* generate auxiliary variable
+gen baba = 0
+
+* list of locations
+collapse (sum) baba, by(mesobr)
+drop baba
+drop if mesobr == .
+
+* save
+save ".././temp/dest_br_aux", replace
+
+*** REPEATING VALUES
+* open
+use ".././temp/dest_br_aux", clear
+
 forval i = 1(1)24 {
 
-	append using ".././temp/locations_br"
+	append using ".././temp/dest_br_aux"
 
 }
 
-* list of locations
-rename geo1_br destination
-
 * save
 gen glue = _n
 sort glue
-save ".././temp/locations2_br", replace
+save ".././temp/dest_br", replace
+
+********************************************************************************
+*** Crops
+********************************************************************************
 
 *** MERGE
 * open
-use ".././temp/locations1_br", clear
+use ".././temp/origin_br", clear
+merge glue using ".././temp/dest_br"
+drop glue _merge
+rename geo1_br origin
+rename mesobr destination
 
-* merge
-merge glue using ".././temp/locations2_br"
-drop _merge glue
-
-* creating crops
-expand 14
+* creating crops (all the ones in the paper MINUS horticulture)
+expand 13
 sort origin destination
-bys origin destination: gen crop = _n - 1
+bys origin destination: gen crop = _n
 
 * creating years
 expand 2
 sort origin destination crop
-bys origin destination crop: gen year = (_n - 1)*30 + 1980
+bys origin destination crop: gen year = (_n - 1)*10 + 2000
 
 * save
-sort origin destination crop
+sort origin destination crop year
 save ".././output/origin_dest_crop_br", replace

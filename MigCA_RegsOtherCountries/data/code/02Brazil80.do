@@ -23,39 +23,46 @@ if "`c(username)'" == "Petrichor" {
 * open
 use ".././output/Brazil", clear
 
-* 1970
+* 1980 (t-1), 2010 (t)
 keep if year == 1980
+replace year = 2010
 
-* keep HH head
-keep if relate == 1
-
-* keep relevant crops: 14 (banana), 19 (cassava root), 27 (poultry raising), 
-* 15 (cocoa beans), 16 (coffee), 12 (cotton), 20 (corn), 41 (fishing), 
-* 23 (horticulture and floriculture), 26 (livestock), 13 (rice), 21 (soy beans), 
-* 17 (sugar cane), 18 (tobacco)
-keep if (ind >= 12 & ind <= 21) | ind == 23 | ind == 26 | ind == 27 | ind == 41
+* keep relevant crops (there is no cassava here)
+replace ind = 1 if ind == 14
+replace ind = 3 if ind == 27
+replace ind = 4 if ind == 15
+replace ind = 5 if ind == 16
+replace ind = 6 if ind == 12
+replace ind = 7 if ind == 20
+replace ind = 8 if ind == 41
+replace ind = 9 if ind == 26
+replace ind = 10 if ind == 13
+replace ind = 11 if ind == 21
+replace ind = 12 if ind == 17
+replace ind = 13 if ind == 18
+keep if ind >= 1 & ind <= 13
 
 * RHS variable
-gen L_iktlag = 1
+gen L_iktlag_80 = 1
 
 * Weighting
-replace L_iktlag = L_iktlag*perwt
+replace L_iktlag_80 = L_iktlag_80*perwt
 
 * renames
-rename mesobr origin
+rename geo1_br origin
 rename ind crop
 
 * collapse
-collapse (sum) L_iktlag, by(origin crop year)
+collapse (sum) L_iktlag_80, by(origin crop year)
 
 * save
-sort origin crop
+sort origin crop year
 save ".././output/L_iktlag_br_80", replace
 
 ********************************************************************************
 *** L_ijkt
 ********************************************************************************
-
+/*
 * open
 use ".././output/Brazil", clear
 
@@ -264,3 +271,4 @@ keep L_wijkt origin destination crop year
 * save
 sort origin destination crop
 save ".././output/L_ijkt_70_person", replace
+*/
