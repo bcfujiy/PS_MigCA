@@ -159,7 +159,7 @@ rename mesobr destination
 rename ind crop
 
 * LHS variable, intermediate step
-gen w_ijkt_00 = inctot*perwt
+gen w_ijkt_00 = incearn*perwt
 bys origin destination crop: egen w_ijkt_00_den = total(perwt)
 
 * collapse
