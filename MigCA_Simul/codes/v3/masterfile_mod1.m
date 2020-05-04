@@ -8,7 +8,7 @@
 tmp = matlab.desktop.editor.getActive;
 cd(fileparts(tmp.Filename));
 
-%% Housekeeping and pla nting seed
+%% Housekeeping and planting seed
 
 clc;
 clear all;

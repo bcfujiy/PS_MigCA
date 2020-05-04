@@ -1,15 +1,10 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
 \origin unavailable
 \textclass article
-\begin_preamble
-% Added by lyx2lyx
-\renewcommand{\textendash}{--}
-\renewcommand{\textemdash}{---}
-\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -26,6 +21,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -64,6 +61,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #b5bd68
@@ -76,7 +74,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -90,7 +91,7 @@
 \begin_body
 
 \begin_layout Title
-RA work for 
+Pellegrina + Sotelo: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -102,341 +103,8 @@ Migration, Specialization, and Trade: Evidence from the Brazilian March
 
 \end_layout
 
-\begin_layout Author
-Brian Cevallos Fujiy
-\end_layout
-
 \begin_layout Section
-Overview of the models
-\end_layout
-
-\begin_layout Standard
-This is a collection of models related to the paper 
-\begin_inset Quotes eld
-\end_inset
-
-Migration, Specialization, and Trade: Evidence from the Brazilian March
- to the West
-\begin_inset Quotes erd
-\end_inset
-
- version June 2019 by Heitor Pellegrina and Sebastian Sotelo.
- We have 8 different model specifications.
- Each model first simulates data from Matlab script files, and then run
- regressions with Stata do-files.
- All models will require to previously run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile.do
-\begin_inset Quotes erd
-\end_inset
-
-, which changes the directory where you are working and creates shortcuts
- for the folders you need to work.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:aggreg"
-
-\end_inset
-
- is describes the model that generates aggregated data.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:base_aggreg"
-
-\end_inset
-
- is the baseline model.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample.do
-\begin_inset Quotes erd
-\end_inset
-
- and 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_aggreg.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod1"
-
-\end_inset
-
- is the model with fixed geography and 
-\begin_inset Formula $\beta=0$
-\end_inset
-
-.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod1.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_aggreg_mod1.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Models so far have simulated aggregated data, and ran regressions on these.
- All the remaining sections try to include actual sampling procedures when
- data is collected by the Brazilian government, such that we introduce sampling
- error and regressions don't match perfectly anymore.
- That is, these model samples and run regressions at the individual level,
- no longer at the location level.
- 
-\end_layout
-
-\begin_layout Standard
-Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:base_sampling"
-
-\end_inset
-
- relies on the base model in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:aggreg"
-
-\end_inset
-
-, but introducing sampling error on the regressions.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod2"
-
-\end_inset
-
- is a model with an alternative definition of earnings that goes into regression
- analyses.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod2.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod2.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod3"
-
-\end_inset
-
- is a model where total welfare also includes a productivity draw.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod3.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod3.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod4"
-
-\end_inset
-
- is a model with an alternative definition of earnings plus migration costs
- 
-\begin_inset Formula $\mu_{ij,kt}$
-\end_inset
-
- with higher variance.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod4.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod4.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod5"
-
-\end_inset
-
- is a model with welfare including a productivity draw plus migration costs
- 
-\begin_inset Formula $\mu_{ij,kt}$
-\end_inset
-
- with higher variance.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod5.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod5.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod6"
-
-\end_inset
-
- is a model with welfare including a productivity draw plus the productivity
- draw 
-\begin_inset Formula $\nu_{ij,kt}$
-\end_inset
-
- with higher variance.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod6.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod6.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:mod7"
-
-\end_inset
-
- is a model with welfare including a productivity draw plus the productivity
- draw 
-\begin_inset Formula $\nu_{ij,kt}$
-\end_inset
-
- with higher variance plus lagged labor allocations 
-\begin_inset Formula $L_{i,kt-1}$
-\end_inset
-
- truncated from below by its median.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod7.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod7.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
-\end_layout
-
-\begin_layout Section
-Base model
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:aggreg"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-This model corresponds to the base model for version June 2019 of the paper.
- The
+Algorithm to generate values for aggregated variables
 \end_layout
 
 \begin_layout Subsection
@@ -859,14 +527,7 @@ We repeat this whole procedure so far for
 \end_layout
 
 \begin_layout Subsection
-Results of base model
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:base_aggreg"
-
-\end_inset
-
-
+Results
 \end_layout
 
 \begin_layout Standard
@@ -884,18 +545,11 @@ The Matlab codes generate data, and then we use that data to run regressions
 \end_layout
 
 \begin_layout Subsection
-Results of model with fixed geography and 
+Results assuming 
 \begin_inset Formula $\beta=0$
 \end_inset
 
-
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod1"
-
-\end_inset
-
-
+ + fixed geography
 \end_layout
 
 \begin_layout Standard
@@ -931,6 +585,9 @@ These are the estimators for regressions (10) and (11) in the paper at the
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_betazero"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -938,6 +595,9 @@ reference "tab:reg10_betazero"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_betazero"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1039,13 +699,6 @@ filename "reg11_betazero.tex"
 
 \begin_layout Section
 Sampling algorithm
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:sampling"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1246,13 +899,6 @@ We have now calculated all variables that we need for regressions, we export
 
 \begin_layout Subsection
 Comparing migration flows of the model VS the sampling ones
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:compare"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1266,6 +912,9 @@ In this section, we compare
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:scatter_L_ijkt"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1323,6 +972,9 @@ In Figure
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:scatter_L_ijkt_logs"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1392,24 +1044,13 @@ ar fixed effects, and standard errors are clustered to the destination-crop-year
  allocations; the fourth one, of sampled log-migration flows on loglagged-labor
  allocations.
  Each table contain results for OLS and PPML estimators.
-\end_layout
-
-\begin_layout Subsubsection
-Baseline model
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:base_sampling"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Tables 
+ Tables 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1417,6 +1058,189 @@ reference "tab:reg10_sample_baseline"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_baseline"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to our baseline model.
+ Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_mod2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to a model with an alternative definition of earnings that goes
+ into regression analyses.
+ Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_mod3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to a model where total welfare also includes a productivity
+ draw.
+ Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_mod4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to a model with our alternative definition of earnings plus
+ migration costs 
+\begin_inset Formula $\mu_{ij,kt}$
+\end_inset
+
+ with higher variance.
+ Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_mod5"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod5"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to a model with welfare including the productivity draw plus
+ migration costs 
+\begin_inset Formula $\mu_{ij,kt}$
+\end_inset
+
+ with higher variance.
+ Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_mod6"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod6"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to a model with welfare including the productivity draw plus
+ the productivity draw 
+\begin_inset Formula $\nu_{ij,kt}$
+\end_inset
+
+ with higher variance.
+ Finally, tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_mod7"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod7"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ correspond to a model with welfare including the productivity draw plus
+ the productivity draw 
+\begin_inset Formula $\nu_{ij,kt}$
+\end_inset
+
+ with higher variance plus lagged labor allocations 
+\begin_inset Formula $L_{i,kt-1}$
+\end_inset
+
+ truncated from below by its median.
+\end_layout
+
+\begin_layout Subsubsection
+Baseline model
+\end_layout
+
+\begin_layout Standard
+Tables 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg10_sample_baseline"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1425,6 +1249,9 @@ reference "tab:reg11_expect_baseline"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1437,6 +1264,9 @@ reference "tab:reg10_sample_baseline"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_expect_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1449,6 +1279,9 @@ reference "tab:reg10_expect_baseline"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_sample_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1463,6 +1296,9 @@ reference "tab:reg11_sample_baseline"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1474,6 +1310,9 @@ reference "tab:reg11_expect_baseline"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_sample_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1686,13 +1525,6 @@ filename "reg11_expect_baseline_ppml.tex"
 
 \begin_layout Subsubsection
 Results with a different definition of earnings
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod2"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1700,6 +1532,9 @@ Tables
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod2"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1707,6 +1542,9 @@ reference "tab:reg10_sample_mod2"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod2"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1723,6 +1561,9 @@ reference "tab:reg11_expect_mod2"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_expect_mod2"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1730,6 +1571,9 @@ reference "tab:reg10_expect_mod2"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_expect_baseline"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1943,13 +1787,6 @@ filename "reg11_expect_mod2_ppml.tex"
 
 \begin_layout Subsubsection
 Results when total utility also has a productivity draw
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod3"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1957,6 +1794,9 @@ Tables
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod3"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -1964,6 +1804,9 @@ reference "tab:reg10_sample_mod3"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod3"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2201,13 +2044,6 @@ Results when a different definition of earnings + higher variance of
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod4"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2215,6 +2051,9 @@ Tables
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod4"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2222,6 +2061,9 @@ reference "tab:reg10_sample_mod4"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod4"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2235,6 +2077,9 @@ reference "tab:reg11_expect_mod4"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod2"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2242,6 +2087,9 @@ reference "tab:reg10_sample_mod2"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod2"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2458,13 +2306,6 @@ Results with the productivity draw + higher variance of
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod5"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2472,6 +2313,9 @@ Tables
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod5"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2479,6 +2323,9 @@ reference "tab:reg10_sample_mod5"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod5"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2489,6 +2336,9 @@ reference "tab:reg11_expect_mod5"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod3"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2496,6 +2346,9 @@ reference "tab:reg10_sample_mod3"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod3"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2714,13 +2567,6 @@ Results with the productivity draw + higher variance of
 \end_inset
 
 
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod6"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2728,6 +2574,9 @@ Tables
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod6"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2735,6 +2584,9 @@ reference "tab:reg10_sample_mod6"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod6"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2965,13 +2817,6 @@ Results with the productivity draw + higher variance of
 \end_inset
 
  from below by its median
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:mod7"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2979,6 +2824,9 @@ Tables
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg10_sample_mod7"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -2986,6 +2834,9 @@ reference "tab:reg10_sample_mod7"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod7"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -3008,6 +2859,9 @@ reference "tab:reg11_expect_mod7"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_sample_mod6"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -3015,6 +2869,9 @@ reference "tab:reg11_sample_mod6"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod6"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
@@ -3023,6 +2880,9 @@ reference "tab:reg11_expect_mod6"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "tab:reg11_expect_mod7"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 

@@ -113,59 +113,6 @@ In this paper we try to replicate the findigs of the paper but with other
  These come up pretty good.
  South Africa does report wages, but we don't find many findings for wages.
  For Brazil we didn't get to run regressions.
- To obtain results, first run codes in folder 
-\begin_inset Quotes eld
-\end_inset
-
-data/code
-\begin_inset Quotes erd
-\end_inset
-
- in the order the first two digits appear.
- After that, run codes in folder 
-\begin_inset Quotes eld
-\end_inset
-
-analysis/code
-\begin_inset Quotes erd
-\end_inset
-
-.
- Results for Brazil are codes 
-\begin_inset Quotes eld
-\end_inset
-
-BR_Regressions.do
-\begin_inset Quotes erd
-\end_inset
-
- and 
-\begin_inset Quotes eld
-\end_inset
-
-BR_SumStats.do
-\begin_inset Quotes erd
-\end_inset
-
-.
- Results for Thailand is 
-\begin_inset Quotes eld
-\end_inset
-
-TH_Regressions.do
-\begin_inset Quotes erd
-\end_inset
-
-.
- Results for ZA_Regressions.do
-\begin_inset Quotes erd
-\end_inset
-
-.
- 
-\series bold
-To replicate, one needs a folder with the IPUMS data which can be obtained
- by request.
 \end_layout
 
 \begin_layout Section

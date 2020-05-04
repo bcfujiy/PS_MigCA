@@ -626,7 +626,509 @@ filename "/Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/
 Summary Statistics
 \end_layout
 
+\begin_layout Paragraph
+Income.
+\end_layout
+
 \begin_layout Standard
+We use person's total monthly income from their labor.
+ Amounts are expressed as they were reported at the time of the census in
+ the currency of the respective country.
+ They are not adjusted for inflation or devaluation.
+ Specifically relating to the Brazilian data: All Brazilian figures are
+ monthly incomes.
+ Brazilian currency changed considerably over time.
+ The cruzeiro was devalued at 1000 to 1 in 1967.
+ The cruzado, equal to 1000 cruzeiros, was introduced in 1986.
+ In 1989 the cruzado was devalued, with 1 new cruzado = 1000 old cruzados.
+ In March 1990, the cruzeiro replaced the cruzado, with no change in value.
+ In 1993, the cruzeiro reais replaced the cruzeiro, with 1 cruzeiro reias
+ = 1000 cruzeiros.
+ Finally, in 1994 the currency was changed to the real, where 1 real = 2750
+ cruzeiros reais.
+ For our purposes, we only use income data for 2000 and 2010, so units are
+ consistent across censuses.
+ In Figure XX we show the distribution of 
+\begin_inset Formula $\Delta w_{ijk2010}=w_{ijk2010}-w_{ijk2000}$
+\end_inset
+
+.
+ There are 44252 potential cells, 42060 missing values so 2192 positive
+ values.
+ Only 19 cells report a value of zero, so it is not a major issue.
+ The distribution exhibit two very long tails, with the right tail being
+ slightly larger.
+ When we zoom in, we see that the distribution is slightly skewed to the
+ left, so in general wages increase.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Delta w_{ijk2010}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histogram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/w_ijkt_histogram.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histogram zoomed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/w_ijkt_histogram_zoom.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Number of people.
+\end_layout
+
+\begin_layout Standard
+We see how 
+\begin_inset Formula $L_{jt}$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{kt}$
+\end_inset
+
+ evolve over time.
+ Units are weighted number of people, so we can go all the way back to 1970
+ whenever possible.
+ In Figure XX we see 
+\begin_inset Formula $L_{jt}$
+\end_inset
+
+ over time normalized at 1970.
+ Expected behavior no weird jumps.
+ In Figure XX we see 
+\begin_inset Formula $L_{kt}$
+\end_inset
+
+ over time from 1970 to 2010 excluding cassava, corn, and soy since they
+ were not produced in 1970 and 1980.
+ There are more people working in producing bananas, chicken, fish, and
+ livestock in 2010 than in 1970.
+ For the rest of crops, there are less people working on these crops.
+ In Figure XX we see 
+\begin_inset Formula $L_{kt}$
+\end_inset
+
+ over time from 1991 to 2010 including cassava, corn, and soy.
+ There are only more people working in producing fish and chicken in 2010
+ with respect to 1991.
+ This probably reflects structural change.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Number of people over time
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $L_{jt}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/L_jt_overtime.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $L_{kt}$
+\end_inset
+
+, 1970-2010 excluding cassava, corn, and soy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/L_kt1_overtime.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $L_{kt}$
+\end_inset
+
+, 1991-2010
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/L_kt2_overtime.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Migration.
+\end_layout
+
+\begin_layout Standard
+For our purposes, we only use migration data for 2000 and 2010.
+ In Figure XX we show the distribution of 
+\begin_inset Formula $\Delta L_{ijk2010}=L_{ijk2010}-L_{ijk2000}$
+\end_inset
+
+.
+ There are 44252 potential cells, 39570 cells where there is no change in
+ migration patterns, so 4955 cells exhibit changes in migration patterns.
+ The distribution has a huge spike at 0.
+ If we remove these zeroes, we see that the distribution is slightly skewed
+ to the left.
+ If we zoom in, we confirm that people have been migrating out of many places,
+ probably to migrate to a few places such as Minas Gerais, and probably
+ to produce main products.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Delta L_{ijk2010}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histogram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/L_ijkt_histogram.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histogram without zeroes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/L_ijkt_histogram_nozeros.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histogram zoomed without zeroes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /Users/Petrichor/RA/PS_MigCA/MigCA_RegsOtherCountries/analysis/output/L_ijkt_histogram_nozeros_zoom.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 

@@ -214,7 +214,6 @@ regs_simdata_aggreg_mod1.do
 \end_layout
 
 \begin_layout Standard
-Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:base_sampling"
@@ -246,7 +245,7 @@ regs_simdata_sample.do
 \end_inset
 
  for regressions.
- Section 
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:mod2"
@@ -272,7 +271,7 @@ regs_simdata_sample_mod2.do
 \end_inset
 
  for regressions.
- Section 
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:mod3"
@@ -297,7 +296,7 @@ regs_simdata_sample_mod3.do
 \end_inset
 
  for regressions.
- Section 
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:mod4"
@@ -327,7 +326,7 @@ regs_simdata_sample_mod4.do
 \end_inset
 
  for regressions.
- Section 
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:mod5"
@@ -357,45 +356,45 @@ regs_simdata_sample_mod5.do
 \end_inset
 
  for regressions.
- Section 
+\end_layout
+
+\begin_layout Standard
+Tables 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:mod6"
+reference "tab:reg10_sample_mod6"
 
 \end_inset
 
- is a model with welfare including a productivity draw plus the productivity
- draw 
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod6"
+
+\end_inset
+
+ correspond to a model with welfare including the productivity draw plus
+ the productivity draw 
 \begin_inset Formula $\nu_{ij,kt}$
 \end_inset
 
  with higher variance.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod6.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod6.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
- Section 
+ Finally, tables 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:mod7"
+reference "tab:reg10_sample_mod7"
 
 \end_inset
 
- is a model with welfare including a productivity draw plus the productivity
- draw 
+-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:reg11_expect_mod7"
+
+\end_inset
+
+ correspond to a model with welfare including the productivity draw plus
+ the productivity draw 
 \begin_inset Formula $\nu_{ij,kt}$
 \end_inset
 
@@ -404,23 +403,6 @@ reference "sec:mod7"
 \end_inset
 
  truncated from below by its median.
- For this model first run 
-\begin_inset Quotes eld
-\end_inset
-
-masterfile_mod7.m
-\begin_inset Quotes erd
-\end_inset
-
- for simulations, and then 
-\begin_inset Quotes eld
-\end_inset
-
-regs_simdata_sample_mod7.do
-\begin_inset Quotes erd
-\end_inset
-
- for regressions.
 \end_layout
 
 \begin_layout Section
